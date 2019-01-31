@@ -20,10 +20,6 @@ class App extends Component {
     if (this.state.ballot.length === 1){
       const winner = this.state.ballot[0]
       console.log(winner)
-      // this.setState( state => {
-      //   return {winner : winner}
-      // })
-      // console.log(this.state.winner) 
     }
   }
 
