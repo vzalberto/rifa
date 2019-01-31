@@ -8,7 +8,8 @@ class App extends Component {
     super(props)
     this.state = {
       ballot:[],
-      winner: null
+      losers: [],
+      winner: 0
     }
   }
 
@@ -16,10 +17,15 @@ class App extends Component {
     this.initBallot();
   }
 
-  componentWillUpdate(){
+  componentDidUpdate(){
     if (this.state.ballot.length === 1){
-      const winner = this.state.ballot[0]
-      console.log(winner)
+      const winner = this.state.ballot[0];
+      this.setState( state => {
+        return {
+          ballot : [],
+          winner : winner,
+        }
+      });
     }
   }
 
@@ -29,24 +35,57 @@ class App extends Component {
     })
   }
 
+  resetBallot = (event) => {
+    event.preventDefault();
+    this.setState( state => {
+      return {
+        ballot : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+        losers : [],
+        winner : 0
+      }
+    });
+  }
+
   handleButtonClick = () =>{
-    console.log('click')
-    let newBallot = this.state.ballot;
-    newBallot.pop();
-    this.setState({ballot: newBallot})
+
+    const newLosers = this.state.losers;
+    const newBallot = this.state.ballot;
+    const newLoser = newBallot.splice(Math.floor(Math.random()*newBallot.length), 1);
+    newLosers.push(newLoser[0]);
+
+    this.setState({ballot: newBallot});
+    this.setState({losers: newLosers});
   }
 
   render() {
-    let lista = null;
-    if( this.state.ballot ){
-      lista = (
-        <ul>
-          {this.state.ballot.map((el)=>{
-            return <li>{el}</li>
-          })}
-        </ul>
-      );
+    let listaPendientes = null;
+    let listaPerdedores = null;
+    let winnerModal = null;
+
+    if ( this.state.winner !== 0){
+      winnerModal = 'Felicidades, número ' + this.state.winner;
     }
+    else{
+
+      if( this.state.ballot.length > 1 ){
+        listaPendientes = (
+          <ul>
+            {this.state.ballot.map((el)=>{
+              return <li>{el}</li>
+            })}
+          </ul>
+        );
+      }
+      if( this.state.losers.length > 0 ){
+        listaPerdedores = (
+          <ul>
+            {this.state.losers.map((el)=>{
+              return <li>{el}</li>
+            })}
+          </ul>
+        );
+      }
+  }
 
     return (
       <div className="App">
@@ -56,12 +95,15 @@ class App extends Component {
             Haga click en el ícono para sacar números
           </p>
 
-          {lista}
+          {listaPendientes}
+          {listaPerdedores}
+          {winnerModal}
 
           <a
             className="App-link"
             href="/"
             rel="noopener noreferrer"
+            onClick={this.resetBallot}
           >
             Reiniciar
           </a>
