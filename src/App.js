@@ -83,20 +83,18 @@ class App extends Component {
             <div>
               <img src={logo} className="App-logo" alt="logo" onClick={this.handleButtonClick}/>
               <p>
-                Haga click en el <a href="https://www.onlinewebfonts.com/icon/562679" target="_blank">
-                ícono</a> para sacar números
+                Haga click en la <a href="https://www.onlinewebfonts.com/icon/562679" target="_blank">
+                tómbola</a> para sacar números
               </p>
             </div>
           }
    
-          <a
-            className="App-link"
-            href="/"
-            rel="noopener noreferrer"
-            onClick={this.resetBallot}
-          >
-            Reiniciar
-          </a> 
+          { this.state.losers.length > 0 ? 
+            <button
+              onClick={this.resetBallot}
+            >
+              Reiniciar
+            </button> : null }
           
         </header>
         </div>

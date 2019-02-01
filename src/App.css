@@ -3,11 +3,10 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 10s linear;
   height: 30vmin;
 }
 
-img:hover {
+.App-logo:hover {
     cursor: pointer;
 }
 
@@ -24,22 +23,23 @@ img:hover {
 }
 
 html{
-
   background-color: #282c34;
-}
-.App-header {
-
-  color: white;
 }
 
 .col {  
   display: flex;
   flex-direction: column;
   font-size: calc(10px + 2vmin);
+  color: #999;
 }
 
-.App-link {
-  color: #61dafb;
+a, a:visited, a:active, .App-header {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #61dbfb;
 }
 
 @keyframes App-logo-spin {
@@ -52,7 +52,7 @@ html{
 }
 
 .lista{
-  background-color: #5c667b;
+  background-color: #282c34;
 
   min-height: 100vh;
 }
@@ -67,5 +67,13 @@ th{
 
 
 img {
-  padding-top: 8em;
+  padding-top: 3em;
+}
+
+button {
+  background-color: #999;
+  border: none;
+  padding: 1em;
+  border-radius: 5px;
+  font-size: .5em;
 }
