@@ -11,7 +11,8 @@ class App extends Component {
     this.state = {
       ballot:[],
       losers: [],
-      winner: 0
+      winner: 0,
+      limite: 10,
     }
   }
 
@@ -34,9 +35,33 @@ class App extends Component {
     }
   }
 
-  initBallot(){
+  generaNumeros = (limite) => {
+    let ballot = [];
+    let i = 1;
+
+    for(i; i <= limite; i++){
+      let numero = null
+      if(i < 10){
+        numero = "0" + i.toString();
+      }
+      else {
+        numero = i.toString();
+      }
+
+      ballot.push(numero);
+    }
+
+    return ballot;
+  }
+
+  handleChange = (event) => {
+    this.setState({limite: event.target.value});
+  }
+
+  initBallot = () => {
+    const ballot = this.generaNumeros(this.state.limite);
     this.setState( state => {
-      return {ballot: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10"]}
+      return {ballot: ballot}
     })
   }
 
@@ -104,12 +129,22 @@ class App extends Component {
       {/* El botón de reinicio se renderiza hasta que haya comenzado el sorteo. */}
 
    
-          { this.state.losers.length > 0 ? 
+          { 
+
+            this.state.losers.length > 0 ? 
             <button
               onClick={this.resetBallot}
             >
               Reiniciar
-            </button> : null }
+            </button> 
+
+      :       
+
+      <div>Limite: &nbsp;&nbsp;&nbsp;
+      <input type="number" min="10" step="1" defaultValue="10" onChange={this.handleChange}/>
+      <button onClick={this.initBallot}>Generar</button></div> 
+
+    }
           
         </header>
         </div>

@@ -60,15 +60,12 @@ th{
   padding-bottom: 2em;
 }
 
-td{
-  padding: .75em;
-}
 .pelota{
   background-color: white;
   padding: .5em;
   border-radius: 50%;
   color: black;
-  font-size: 1em;
+  font-size: .5em;
 }
 
 img {
