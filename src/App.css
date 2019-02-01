@@ -1,3 +1,7 @@
+html{
+  background-color: #282c34;
+}
+
 .App {
   text-align: center;
 }
@@ -6,8 +10,8 @@
   height: 30vmin;
 }
 
-.App-logo:hover {
-    cursor: pointer;
+.App-logo:hover, button {
+  cursor: pointer;
 }
 
 .col {
@@ -20,10 +24,6 @@
   content: "";
   display: table;
   clear: both;
-}
-
-html{
-  background-color: #282c34;
 }
 
 .col {  
@@ -42,29 +42,34 @@ a:hover {
   color: #61dbfb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.lista{
-  background-color: #282c34;
-
-  min-height: 100vh;
-}
-
-table, h3{
+table{
   margin: 4em;
+}
+
+h3{
+  margin-top: 4em;
+  margin-left: 4em;
+  margin-right: 4em;
+}
+
+.modal {
+  margin-bottom: 4em;
 }
 
 th{
   padding-bottom: 2em;
 }
 
+td{
+  padding: .75em;
+}
+.pelota{
+  background-color: white;
+  padding: .5em;
+  border-radius: 50%;
+  color: black;
+  font-size: 1em;
+}
 
 img {
   padding-top: 3em;

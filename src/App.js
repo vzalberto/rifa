@@ -33,7 +33,7 @@ class App extends Component {
 
   initBallot(){
     this.setState( state => {
-      return {ballot: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+      return {ballot: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10"]}
     })
   }
 
@@ -41,7 +41,7 @@ class App extends Component {
     event.preventDefault();
     this.setState( state => {
       return {
-        ballot : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+        ballot : ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10"],
         losers : [],
         winner : 0
       }

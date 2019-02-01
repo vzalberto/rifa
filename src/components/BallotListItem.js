@@ -4,7 +4,7 @@ class BallotListItem extends Component{
 	render () {
 		return (
 			<tr>
-				<td>{this.props.data}</td>
+				<td><span className="pelota">{this.props.data}</span></td>
 			</tr>
 		)
 	}
