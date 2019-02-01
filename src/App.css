@@ -3,19 +3,39 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+  animation: App-logo-spin infinite 10s linear;
+  height: 30vmin;
 }
 
-.App-header {
+img:hover {
+    cursor: pointer;
+}
+
+.col {
+  float: left;
+  width: 33.33%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+html{
+
   background-color: #282c34;
-  min-height: 100vh;
+}
+.App-header {
+
+  color: white;
+}
+
+.col {  
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .App-link {
@@ -29,4 +49,23 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.lista{
+  background-color: #5c667b;
+
+  min-height: 100vh;
+}
+
+table, h3{
+  margin: 4em;
+}
+
+th{
+  padding-bottom: 2em;
+}
+
+
+img {
+  padding-top: 8em;
 }

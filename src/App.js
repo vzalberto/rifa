@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import logo from './luck.svg';
+import BallotList from './components/BallotList'
+import WinnerModal from './components/WinnerModal'
+import logo from './raffle.svg';
 import './App.css';
 
 class App extends Component {
@@ -48,57 +50,45 @@ class App extends Component {
 
   handleButtonClick = () =>{
 
-    const newLosers = this.state.losers;
-    const newBallot = this.state.ballot;
-    const newLoser = newBallot.splice(Math.floor(Math.random()*newBallot.length), 1);
-    newLosers.push(newLoser[0]);
+    if (this.state.winner === 0){
+      const newLosers = this.state.losers;
+      const newBallot = this.state.ballot;
+      const newLoser = newBallot.splice(Math.floor(Math.random()*newBallot.length), 1);
 
-    this.setState({ballot: newBallot});
-    this.setState({losers: newLosers});
+      newLosers.push(newLoser[0]);
+
+      this.setState({ballot: newBallot});
+      this.setState({losers: newLosers});
+    }
   }
 
   render() {
-    let listaPendientes = null;
-    let listaPerdedores = null;
-    let winnerModal = null;
 
-    if ( this.state.winner !== 0){
-      winnerModal = 'Felicidades, número ' + this.state.winner;
+    let isVisible = false;
+    if( this.state.winner !== 0){
+      isVisible = true;
     }
-    else{
-
-      if( this.state.ballot.length > 1 ){
-        listaPendientes = (
-          <ul>
-            {this.state.ballot.map((el)=>{
-              return <li>{el}</li>
-            })}
-          </ul>
-        );
-      }
-      if( this.state.losers.length > 0 ){
-        listaPerdedores = (
-          <ul>
-            {this.state.losers.map((el)=>{
-              return <li>{el}</li>
-            })}
-          </ul>
-        );
-      }
-  }
 
     return (
       <div className="App">
+
+      <div className="row">
+      <div className="col lista">
+          <BallotList ballot={this.state.ballot} header="Aún con vida..." />
+      </div>
+      <div className="col">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" onClick={this.handleButtonClick}/>
-          <p>
-            Haga click en el ícono para sacar números
-          </p>
 
-          {listaPendientes}
-          {listaPerdedores}
-          {winnerModal}
-
+          {this.state.winner > 0 ? <WinnerModal winner={this.state.winner} /> : 
+            <div>
+              <img src={logo} className="App-logo" alt="logo" onClick={this.handleButtonClick}/>
+              <p>
+                Haga click en el <a href="https://www.onlinewebfonts.com/icon/562679" target="_blank">
+                ícono</a> para sacar números
+              </p>
+            </div>
+          }
+   
           <a
             className="App-link"
             href="/"
@@ -106,8 +96,14 @@ class App extends Component {
             onClick={this.resetBallot}
           >
             Reiniciar
-          </a>
+          </a> 
+          
         </header>
+        </div>
+        <div className="col lista">
+          <BallotList ballot={this.state.losers} header="Descartados:" />
+        </div>
+        </div>
       </div>
     );
   }
